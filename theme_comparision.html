@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Theme C Font Comparison (FIXED)</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Lato:wght@400&family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400&family=Outfit:wght@600&family=Lora:wght@400&family=Space+Mono:wght@700&family=Fira+Sans:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ======================================
+         DYNAMIC FONT VARIABLES MOVED TO ROOT 
+         ======================================
+        */
+      :root {
+        --header-font: "Oswald", sans-serif; /* Default Font for all H2 */
+        --body-font: "Lato", sans-serif; /* Default Font for all P */
+      }
+
+      /* --- Base Styling --- */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        color: var(--global-text-color, #333);
+        background-color: var(--global-bg-color, #f0f0f0);
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .controls {
+        text-align: center;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+      .controls button,
+      .controls select {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        background-color: #3498db;
+        color: #ffffff;
+        transition: background-color 0.3s;
+      }
+      .controls button:hover,
+      .controls select:hover {
+        background-color: #2980b9;
+      }
+
+      /* --- Comparison Grid --- */
+      .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        max-width: 1200px;
+        margin: 40px auto;
+      }
+      .theme-box {
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, background-color 0.3s, color 0.3s,
+          box-shadow 0.3s;
+      }
+      .theme-box:hover {
+        transform: translateY(-5px);
+      }
+      /* Elements now use the global font variables defined on :root */
+      .theme-box h2 {
+        font-family: var(--header-font);
+        border-bottom: 2px solid;
+        padding-bottom: 10px;
+        margin-top: 0;
+        font-size: 1.8em;
+        line-height: 1.2;
+      }
+      .sample-text p {
+        font-family: var(--body-font);
+        line-height: 1.6;
+        margin-bottom: 20px;
+        transition: font-family 0.3s;
+      }
+      .sample-text button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s ease, color 0.3s;
+      }
+
+      /* --- Code/Value Display Area (Unchanged) --- */
+      .value-display {
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 1200px;
+        margin: 40px auto;
+        background-color: var(--global-card-bg, #ffffff);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: background-color 0.3s;
+      }
+      .value-display table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: monospace;
+        color: var(--global-text-color, #333);
+      }
+      .value-display th,
+      .value-display td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid var(--global-border-color, #ddd);
+      }
+      .value-display th {
+        background-color: var(--global-th-bg, #f5f5f5);
+      }
+      .color-swatch {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 1px solid var(--global-swatch-border, #ccc);
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+
+      /*
+          ==================================
+          THEME C COLOR DEFINITIONS (Fox Vibe)
+          ==================================
+        */
+      .theme-box {
+        /* Theme C: Fox Vibe (Light Theme) */
+        --bg-color-a: #fffbf5;
+        --text-color-a: #1e3f35;
+        --accent-color-a: #cc5500;
+
+        /* Theme C: Fox Vibe (Dark Theme) */
+        --bg-color-b: #18221d;
+        --text-color-b: #e3d5c0;
+        --accent-color-b: #cc5500;
+      }
+
+      /* DARK MODE OVERRIDES */
+      body.dark-mode .theme-box {
+        --global-bg-color: #0d0d0d;
+        --global-text-color: #f5f5f5;
+        --global-card-bg: #1e1e1e;
+        --global-border-color: #333333;
+        --global-th-bg: #282828;
+        --global-swatch-border: #555;
+      }
+
+      /* --- Apply the Dynamic Color Variables --- */
+      .theme-a {
+        background-color: var(--bg-color-a);
+        color: var(--text-color-a);
+      }
+      .theme-a h2 {
+        color: var(--accent-color-a);
+        border-color: var(--accent-color-a);
+      }
+      .theme-a .sample-text button {
+        background-color: var(--accent-color-a);
+        color: #ffffff;
+      }
+
+      .theme-b {
+        background-color: var(--bg-color-b);
+        color: var(--text-color-b);
+      }
+      .theme-b h2 {
+        color: var(--accent-color-b);
+        border-color: var(--accent-color-b);
+      }
+      .theme-b .sample-text button {
+        background-color: var(--accent-color-b);
+        color: var(--text-color-b);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Portfolio Theme C (Fox Vibe) Font Comparison</h1>
+
+    <div class="controls">
+      <button id="themeToggle">Swap Light and Dark View</button>
+
+      <select id="fontSelector">
+        <option value="option1">Option 1: Oswald / Lato (Structured)</option>
+        <option value="option2">
+          Option 2: Playfair Display / Source Sans 3 (Classic)
+        </option>
+        <option value="option3">
+          Option 3: Outfit / Lora (Modern & Approachable)
+        </option>
+        <option value="option4">
+          Option 4: Space Mono / Fira Sans (Technical)
+        </option>
+      </select>
+    </div>
+
+    <hr />
+
+    <div class="comparison-grid">
+      <div class="theme-box theme-a" id="themeA">
+        <h2>Fox Vibe Light Theme</h2>
+        <div class="sample-text">
+          <p>
+            This is your main body text. The font you select above is applied
+            here. It uses a **Warm Cream** background, **Deep Forest Green**
+            text, and the **Burnt Orange** accent color.
+          </p>
+          <p>
+            The header font is set in bold to provide maximum impact and visual
+            strength against the light background.
+          </p>
+          <button>See My Work</button>
+        </div>
+      </div>
+
+      <div class="theme-box theme-b" id="themeB">
+        <h2>Fox Vibe Dark Theme</h2>
+        <div class="sample-text">
+          <p>
+            This is your main body text in the same font. The **Deep Moss**
+            background and **Soft Pale Gold** text create a luxurious feel.
+          </p>
+          <p>
+            The **Burnt Orange** accent is maintained here, providing
+            consistency across your light and dark modes.
+          </p>
+          <button>See My Work</button>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="value-display">
+      <h2>Extracted Code Values for Comparison</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Light Theme C</th>
+            <th>Dark Theme C</th>
+          </tr>
+        </thead>
+        <tbody id="comparison-table-body"></tbody>
+      </table>
+    </div>
+
+    <script>
+      const themeToggle = document.getElementById("themeToggle");
+      const fontSelector = document.getElementById("fontSelector");
+      const themeA = document.getElementById("themeA");
+      const themeB = document.getElementById("themeB");
+      const root = document.documentElement; // Target the :root element for CSS variables
+
+      // Define font mappings
+      const fontOptions = {
+        option1: { header: "'Oswald', sans-serif", body: "'Lato', sans-serif" },
+        option2: {
+          header: "'Playfair Display', serif",
+          body: "'Source Sans 3', sans-serif",
+        },
+        option3: { header: "'Outfit', sans-serif", body: "'Lora', serif" },
+        option4: {
+          header: "'Space Mono', monospace",
+          body: "'Fira Sans', sans-serif",
+        },
+      };
+
+      // --- Font Selector Logic ---
+      function updateFonts(selectedOption) {
+        const fonts = fontOptions[selectedOption];
+        // Apply font variables directly to the :root element
+        root.style.setProperty("--header-font", fonts.header);
+        root.style.setProperty("--body-font", fonts.body);
+
+        // Re-render the table to show the new font names
+        renderComparisonTable();
+      }
+
+      fontSelector.addEventListener("change", (e) => {
+        updateFonts(e.target.value);
+      });
+
+      // --- Theme Swap Logic ---
+      themeToggle.addEventListener("click", () => {
+        // Swap classes to apply the correct styles
+        themeA.classList.toggle("theme-a");
+        themeA.classList.toggle("theme-b");
+        themeB.classList.toggle("theme-a");
+        themeB.classList.toggle("theme-b");
+
+        // Swap IDs temporarily so the extractor pulls the right values for the table
+        let tempID = themeA.id;
+        themeA.id = themeB.id;
+        themeB.id = tempID;
+
+        renderComparisonTable();
+
+        // Swap titles for clarity
+        const titleA = themeA.querySelector("h2");
+        const titleB = themeB.querySelector("h2");
+        let tempTitle = titleA.textContent;
+        titleA.textContent = titleB.textContent;
+        titleB.textContent = tempTitle;
+
+        // Revert IDs back to their original boxes after rendering
+        tempID = themeA.id;
+        themeA.id = themeB.id;
+        themeB.id = tempID;
+      });
+
+      // --- Data Extraction Logic ---
+      function extractThemeData(elementId) {
+        const element = document.getElementById(elementId);
+        const style = getComputedStyle(element);
+
+        let prefix = elementId === "themeA" ? "a" : "b";
+
+        // Extract values (colors are fixed)
+        const bgColor = style.getPropertyValue(`--bg-color-${prefix}`).trim();
+        const textColor = style
+          .getPropertyValue(`--text-color-${prefix}`)
+          .trim();
+        const accentColor = style
+          .getPropertyValue(`--accent-color-${prefix}`)
+          .trim();
+
+        // Extract current active font variables from the root element
+        const rootStyle = getComputedStyle(root);
+        const headerFont = rootStyle.getPropertyValue("--header-font").trim();
+        const bodyFont = rootStyle.getPropertyValue("--body-font").trim();
+
+        return {
+          "Background Color": bgColor,
+          "Primary Text Color": textColor,
+          "Accent/Action Color": accentColor,
+          "Header Font": headerFont.split(",")[0].replace(/"/g, "").trim(),
+          "Body Font": bodyFont.split(",")[0].replace(/"/g, "").trim(),
+        };
+      }
+
+      function renderComparisonTable() {
+        // Get data from the boxes currently using the theme A and theme B styles
+        const dataA = extractThemeData("themeA");
+        const dataB = extractThemeData("themeB");
+        const tbody = document.getElementById("comparison-table-body");
+        tbody.innerHTML = "";
+
+        const properties = Object.keys(dataA);
+
+        properties.forEach((prop) => {
+          const row = tbody.insertRow();
+          const cellProp = row.insertCell();
+          const cellA = row.insertCell();
+          const cellB = row.insertCell();
+
+          cellProp.textContent = prop;
+
+          if (prop.includes("Color")) {
+            cellA.innerHTML = `<span class="color-swatch" style="background-color: ${dataA[prop]};"></span>${dataA[prop]}`;
+            cellB.innerHTML = `<span class="color-swatch" style="background-color: ${dataB[prop]};"></span>${dataB[prop]}`;
+          } else {
+            cellA.textContent = dataA[prop];
+            cellB.textContent = dataB[prop];
+          }
+        });
+      }
+
+      // Initialize with default fonts
+      document.addEventListener("DOMContentLoaded", () => {
+        updateFonts(fontSelector.value); // Set initial fonts and render table
+      });
+    </script>
+  </body>
+</html>
